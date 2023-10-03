@@ -11,7 +11,7 @@ class MoviesController < ApplicationController
     @ratings_to_show = []
     selected_ratings = params[:ratings]
     if selected_ratings == nil
-      @movies = Movie.with_ratings([])
+      @movies = Movie.all
     else
       @movies = Movie.with_ratings(selected_ratings.keys)
     end
