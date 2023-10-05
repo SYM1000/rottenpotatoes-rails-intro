@@ -10,15 +10,28 @@
       <%= check_box_tag "ratings[#{rating}]", "1",  @ratings_to_show.include?(rating), class: 'form-check-input' %>
     </div>
   <% end %>
+  <%= hidden_field_tag 'selected_ratings', @ratings_to_show.map { |rating| [rating, '1'] }.to_h.to_json %>
   <%= submit_tag 'Refresh', id: 'ratings_submit', class: 'btn btn-primary' %>
 <% end %>
 
 <table class="table table-striped col-md-12" id="movies">
   <thead>
     <tr>
-      <th>Movie Title</th>
+
+      <th class="<%= @title_header_class %>">
+        <a id="title_header" href="<%= movies_path(sort_by: 'title', selected_ratings: URI.encode(@ratings_to_show.map { |rating| [rating, '1'] }.to_h.to_json) ) %>">
+          Movie Title
+        </a>
+      </th>
+      
       <th>Rating</th>
-      <th>Release Date</th>
+
+      <th class="<%= @release_date_header_class %>">
+        <a id="release_date_header" href="<%= movies_path(sort_by: 'release_date', selected_ratings: URI.encode(@ratings_to_show.map { |rating| [rating, '1'] }.to_h.to_json) ) %>">
+          Release Date
+        </a>
+      </th>
+
       <th>More Info</th>
     </tr>
   </thead>
