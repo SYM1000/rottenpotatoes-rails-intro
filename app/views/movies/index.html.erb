@@ -11,6 +11,7 @@
     </div>
   <% end %>
   <%= hidden_field_tag 'selected_ratings', @ratings_to_show.map { |rating| [rating, '1'] }.to_h.to_json %>
+  <%= hidden_field_tag :untick, 1 %>
   <%= submit_tag 'Refresh', id: 'ratings_submit', class: 'btn btn-primary' %>
 <% end %>
 
@@ -49,6 +50,7 @@
         </td>
         <td>
           <%= link_to "More about #{movie.title}", movie_path(movie) %>
+          <%= hidden_field_tag :previous_url, 1 %>
         </td>
       </tr>
     <% end %>
