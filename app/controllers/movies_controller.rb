@@ -25,31 +25,7 @@ class MoviesController < ApplicationController
       
     end
 
-    # if !params[:ratings].nil?
-    #   session[:ratings] = params[:ratings]
-    # end
-
-      # params[:sort_by] = session[:sort_by]
-
-    # if !session[:sort_by].nil? && params[:sort_by].nil?
-    #   params[:sort_by] = session[:sort_by]
-    # end
-
     params[:ratings] = session[:ratings]
-    # if !session[:ratings].nil? && params[:ratings].nil?
-      
-    # end
-
-    # redirect_to movies_path(sort_by: params[:sort_by], selected_ratings: params[:ratings])
-
-    # if session[:ratings].nil? && params[:ratings].nil?
-    #   session[:ratings] = params[:ratings]
-
-    # elsif !session[:ratings].nil? && params[:ratings].nil? && !session[:first_visit]==1
-    #   params[:ratings] = session[:ratings]
-    # end
-
-    # if not: This is the first visit
 
     @all_ratings = Movie.all_ratings
     @ratings_to_show = []
@@ -75,8 +51,6 @@ class MoviesController < ApplicationController
     else
       @ratings_to_show = @all_ratings
     end
-    
-    # redirect_to movies_path(sort_by: params[:sort_by], selected_ratings: params[:@ratings_to_show])
 
 
   end
