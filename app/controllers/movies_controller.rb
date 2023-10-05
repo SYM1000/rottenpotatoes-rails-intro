@@ -9,6 +9,7 @@ class MoviesController < ApplicationController
   def index
     if params[:sort_by].nil? && params[:ratings].nil? && !params.has_key?(:previous_url)
       redirect_to movies_path(sort_by: session[:sort_by], ratings: session[:ratings])
+      return
     end
 
     if params.has_key?(:previous_url)
