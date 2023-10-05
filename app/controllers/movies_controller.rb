@@ -7,10 +7,10 @@ class MoviesController < ApplicationController
   end
 
   def index
-    if (params[:sort_by].nil? && params[:ratings].nil? && !params.has_key?(:previous_url)) || params.has_key?(:previous_url)
-      redirect_to movies_path(sort_by: session[:sort_by], ratings: session[:ratings])
-      return
-    end
+    # if (params[:sort_by].nil? && params[:ratings].nil? && !params.has_key?(:previous_url)) || params.has_key?(:previous_url)
+    #   redirect_to movies_path(sort_by: session[:sort_by], ratings: session[:ratings])
+    #   return
+    # end
 
     # if params.has_key?(:previous_url)
     #   redirect_to movies_path(sort_by: session[:sort_by], ratings: session[:ratings])
@@ -53,6 +53,9 @@ class MoviesController < ApplicationController
       @ratings_to_show = @all_ratings
     end
 
+    if session[:sort_by] != params[:sort_by] || session[:ratings] != params[:ratings]
+      redirect_to movies_path(sort_by: session[:sort_by], ratings: session[:ratings])
+    end
 
   end
 
